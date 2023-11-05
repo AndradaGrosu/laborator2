@@ -19,5 +19,7 @@ namespace Grosu_Andrada_lab.Data
         public DbSet<Grosu_Andrada_lab.Models.Publisher>? Publisher { get; set; }
 
         public DbSet<Grosu_Andrada_lab.Models.Author>? Author { get; set; }
+
+        public DbSet<Grosu_Andrada_lab.Models.Category>? Category { get; set; }
     }
 }
