@@ -9,6 +9,7 @@ namespace Grosu_Andrada_lab.Models
         public int ID { get; set; }
         [Display(Name = "Book Title")]
         public string Title { get; set; }
+       
         public int? AuthorID {  get; set; }
         public Author? Author { get; set; }
       

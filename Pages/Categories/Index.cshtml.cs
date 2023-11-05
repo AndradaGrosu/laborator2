@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Grosu_Andrada_lab.Data;
 using Grosu_Andrada_lab.Models;
+using Grosu_Andrada_lab.Models.ViewModels;
 
 namespace Grosu_Andrada_lab.Pages.Categories
 {
@@ -20,12 +21,17 @@ namespace Grosu_Andrada_lab.Pages.Categories
         }
 
         public IList<Category> Category { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public CategoriesIndexData CategoryData { get; set; }
+        public int CategoryID { get; set; }
+        public int BookID { get; set; }
+        public async Task OnGetAsync(int? id, int? bookID)
         {
-            if (_context.Category != null)
+            CategoryData = new CategoriesIndexData(); CategoryData.Publishers = await _context.Category.Include(i => i.BookCategories).ThenInclude(c => c.Book.Author).OrderBy(i => i.CategoryName).ToListAsync();
+            if (id != null)
             {
-                Category = await _context.Category.ToListAsync();
+                CategoryID = id.Value;
+                Category category = CategoryData.Publishers.Where(i => i.ID == id.Value).Single();
+                CategoryData.Books = category.BookCategories.Select(bc => bc.Book).ToList();
             }
         }
     }
