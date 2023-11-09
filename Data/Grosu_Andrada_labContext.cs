@@ -21,5 +21,18 @@ namespace Grosu_Andrada_lab.Data
         public DbSet<Grosu_Andrada_lab.Models.Author>? Author { get; set; }
 
         public DbSet<Grosu_Andrada_lab.Models.Category>? Category { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Book>()
+                .HasOne(e => e.Borrowing)
+                .WithOne(e => e.Book)
+                .HasForeignKey<Borrowing>("BookID");
+        }
+
+        public DbSet<Grosu_Andrada_lab.Models.Member>? Member { get; set; }
+
+        public DbSet<Grosu_Andrada_lab.Models.Borrowing>? Borrowing { get; set; }
+
     }
 }
