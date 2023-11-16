@@ -8,6 +8,8 @@ namespace Grosu_Andrada_lab.Models
     {
         public int ID { get; set; }
         [Display(Name = "Book Title")]
+        [Required(ErrorMessage = "Titlul trebuie completat obligatoriu!")]
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "Title trebuie aiba o lungime minima de 3 caractere si o lungime maxima de 150 de caractere.")]
         public string Title { get; set; }
      
             [Range(0.01, 500)]

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Grosu_Andrada_lab.Data;
 using Grosu_Andrada_lab.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Grosu_Andrada_lab.Pages.Categories
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly Grosu_Andrada_lab.Data.Grosu_Andrada_labContext _context;
